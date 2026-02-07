@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ip-app/static/css/main.f855e6bc.css",
+    "main.js": "/ip-app/static/js/main.a7e24cd0.js",
+    "index.html": "/ip-app/index.html",
+    "main.f855e6bc.css.map": "/ip-app/static/css/main.f855e6bc.css.map",
+    "main.a7e24cd0.js.map": "/ip-app/static/js/main.a7e24cd0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.a7e24cd0.js"
+  ]
+}
