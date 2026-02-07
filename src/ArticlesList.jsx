@@ -51,9 +51,9 @@ export class ArticlesList extends Component {
         }));
     }
 
-    deleteItem = (headline) => {
+    deleteItem = (title) => {
         this.setState({
-            list: this.state.list.filter(item => item.headline !== headline)
+            list: this.state.list.filter(item => item.title !== title)
         })
     }
 
@@ -79,7 +79,7 @@ export class ArticlesList extends Component {
                         <img src={item.img} alt={item.title} />
                         <h3>Rate: {item.rate}</h3>
                         <p>Publish date: {item.date}</p>
-                        <button onClick={() => this.deleteItem(item.headline)}>Delete element</button>
+                        <button onClick={() => this.deleteItem(item.title)}>Delete element</button>
                     </li>
                 })}
                 </ul>
