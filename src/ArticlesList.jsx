@@ -9,6 +9,17 @@ export class ArticlesList extends Component {
 
     componentDidMount() {
         this.getAPI()
+        const lcItems = JSON.parse(localStorage.getItem('Items'));
+        this.setState({
+        list: lcItems
+        })
+
+    }
+
+    componentDidUpdate() {
+        const items = this.state.list
+        console.log(items)
+        localStorage.setItem('Items', JSON.stringify(items))
     }
 
     getAPI = () => {
@@ -24,10 +35,16 @@ export class ArticlesList extends Component {
         let headline = e.target.name.value;
         let describtion = e.target.describtion.value;
         let img = e.target.img.value;
+        let rate = e.target.rate.value;
+        let category = e.target.category.value;
+        let date = e.target.date.value;
         let newItem = {
-            headline: headline,
-            describtion: describtion,
-            img: img
+            title: headline,
+            article: describtion,
+            img: img,
+            rate: rate,
+            category: category,
+            date: date
         }
         this.setState(prevState => ({
             list: [...prevState.list, newItem]
@@ -48,6 +65,9 @@ export class ArticlesList extends Component {
                     <input placeholder="Name" name="name" type="text" />
                     <input placeholder="Describtion" name="describtion" type="text" />
                     <input placeholder="Image link" name="img" type="text" />
+                    <input placeholder="Rate" name="rate" type="text" />
+                    <input placeholder="Category" name="category" type="text" />
+                    <input placeholder="Date" name="date" type="text" />
                     <button type="submit">Create new item</button>
                 </form>
 
@@ -57,9 +77,9 @@ export class ArticlesList extends Component {
                         <h2>{item.title}</h2>
                         <p>{item.article}</p>
                         <img src={item.img} alt={item.title} />
-                        <h3>{item.rate}</h3>
-                        <p>{item.date}</p>
-                        {/* <button onClick={() => this.deleteItem(item.headline)}>Delete element</button> */}
+                        <h3>Rate: {item.rate}</h3>
+                        <p>Publish date: {item.date}</p>
+                        <button onClick={() => this.deleteItem(item.headline)}>Delete element</button>
                     </li>
                 })}
                 </ul>
@@ -67,3 +87,9 @@ export class ArticlesList extends Component {
         )
     }
 }
+
+//  за допомогою методу componentDidUpdate реалізувати збереження списку завдань на клієнті використовуючи локальне сховище
+
+// Таймер з componentDidMount та componentWillUnmount - створіть класовий компонент, який має таймер, що починає відлік
+//  часу після монтажу компонента та зупиняється при видаленні компонента
+//  з DOM. Використовуйте componentDidMount для запуску таймеру та componentWillUnmount для його зупинки.
