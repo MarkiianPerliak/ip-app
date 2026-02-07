@@ -9,10 +9,10 @@ export class ArticlesList extends Component {
 
     componentDidMount() {
         this.getAPI()
-        const lcItems = JSON.parse(localStorage.getItem('Items'));
-        this.setState({
-        list: lcItems
-        })
+        // const lcItems = JSON.parse(localStorage.getItem('Items'));
+        // this.setState({
+        // list: lcItems
+        // })
 
     }
 
@@ -22,8 +22,8 @@ export class ArticlesList extends Component {
         localStorage.setItem('Items', JSON.stringify(items))
     }
 
-    getAPI = () => {
-        fetch("https://69749e44265838bbea956cab.mockapi.io/articles").then((result) => result.json()).then((resultdata) => 
+    getAPI = async () => {
+        await fetch("https://69749e44265838bbea956cab.mockapi.io/articles").then((result) => result.json()).then((resultdata) => 
         this.setState(({
             list: resultdata
         }))
@@ -73,7 +73,8 @@ export class ArticlesList extends Component {
 
                 <ul>
                 {this.state.list.map(item => {
-                    return <li>
+                    console.log(item._id.$oid)
+                    return <li key={item._id.$oid}>
                         <h2>{item.title}</h2>
                         <p>{item.article}</p>
                         <img src={item.img} alt={item.title} />
